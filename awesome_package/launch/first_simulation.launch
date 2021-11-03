@@ -1,0 +1,31 @@
+<launch>
+    <arg name="vehicle_name" default="bluerov" />
+    
+    <!-- start the gazebo simulator and an empty world -->
+    <include file="$(find bluerov_sim)/launch/gazebo_base.launch" />
+
+    <group ns="$(arg vehicle_name)">
+        <!-- Spawn the vehicle. You can use the args to set the spawn pose-->
+        <include file="$(find bluerov_sim)/launch/spawn_vehicle.launch">
+            <!-- Set the position-->
+            <arg name="x" value="0.0" />
+            <arg name="y" value="0.0" />
+            <arg name="z" value="-0.2"/>
+            <!-- Set roll, pitch, yaw-->
+            <arg name="R" value="0.0" />
+            <arg name="P" value="0.0" />
+            <arg name="Y" value="0.0" />
+        </include>
+        <!-- launch the motor_command_sender node    -->
+        <node name="motor_command_sender" pkg="awesome_package" type="motor_command_sender.py"/>
+        <!-- launch the depth_calculator sender node   -->    
+        <node name="depth_calculator" pkg="awesome_package" type="depth_calculator.py"/>  
+        <!-- launch the depth_calculator sender node   -->    
+        <node name="depth_setpoint" pkg="awesome_package" type="depth_setpoint.py"/>  
+        <!-- launch the depth_calculator sender node   -->    
+        <node name="mixer" pkg="awesome_package" type="mixer.py"/>  
+        <!-- launch the depth_calculator sender node   -->    
+        <node name="thrust_controller" pkg="awesome_package" type="thrust_controller.py"/>  
+    </group>
+</launch>
+   
