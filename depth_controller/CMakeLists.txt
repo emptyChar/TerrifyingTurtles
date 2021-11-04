@@ -49,6 +49,9 @@ include_directories(
 
 
 catkin_install_python(PROGRAMS
+  nodes/depth_calculator.py
   nodes/depth_setpoint.py
+  nodes/mixer.py
+  nodes/thrust_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

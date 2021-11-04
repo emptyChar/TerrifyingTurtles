@@ -24,7 +24,7 @@ class ThrustControl ():
                                                    queue_size=1)
 
         # variables
-        self.depth_setpoint = -0.2
+        self.depth_setpoint = -0.4
         self.depth = 0.0
 
         self.d = self.depth_sub
