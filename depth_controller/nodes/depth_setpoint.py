@@ -13,8 +13,8 @@ class DepthSetpointNode():
         # either constant setpoint (setpoint_1), or jumping between two setpoints
         self.constant = False  # constant or square wave?
         self.duration = 30.0  # in s
-        # self.setpoint_1 = -0.2
-        # self.setpoint_2 = -0.6
+        self.setpoint_1 = -0.2
+        self.setpoint_2 = -0.6
 
         self.setpoint_pub = rospy.Publisher("depth_setpoint",
                                             Float64,
