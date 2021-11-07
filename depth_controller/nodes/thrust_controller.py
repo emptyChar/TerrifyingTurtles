@@ -24,7 +24,7 @@ class ThrustControl ():
                                                    queue_size=1)
 
         # variables
-        # self.depth_setpoint = -0.6
+        self.depth_setpoint = -0.6 # dont need this because its getting the data from depth_setpoint
         self.depth = 0.0
 
         self.d = self.depth_sub
@@ -32,7 +32,7 @@ class ThrustControl ():
         self.v = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         self.integral = 0
-
+    
     def on_depth_setpoint(self, msg):
         self.depth_setpoint = msg.data
 
@@ -55,6 +55,7 @@ class ThrustControl ():
         dt = Float64()
         dt.data = 0.02
 
+        
         self.depth_setpoint_sub = rospy.Subscriber("depth_setpoint",
                                                    Float64,
                                                    self.on_depth_setpoint,
@@ -106,6 +107,13 @@ class ThrustControl ():
         # return output
         return thrust
 
+def pid_dyn_reconfigure(self, config, level):
+        
+    
+        self.depth_delta = config["depth_delta"]
+        self.integral = config["integral"]
+
+        return config
 
 def main():
     controller = ThrustControl()

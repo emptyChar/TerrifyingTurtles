@@ -4,6 +4,7 @@ project(depth_controller)
 find_package(catkin REQUIRED COMPONENTS
   message_generation
   std_msgs
+  dynamic_reconfigure
 )
 
 # add_message_files(
@@ -30,10 +31,9 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+generate_dynamic_reconfigure_options(
+  cfg/PidControl.cfg
+)
 
 catkin_package(
 #  INCLUDE_DIRS include
